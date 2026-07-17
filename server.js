@@ -20,7 +20,12 @@ app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads/images")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads/images/voice")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use(express.static(path.join(__dirname, "../frontend")));
+const fs = require("fs");
+let frontendPath = path.join(__dirname, "../frontend");
+if (!fs.existsSync(frontendPath)) {
+  frontendPath = path.join(__dirname, "frontend");
+}
+app.use(express.static(frontendPath));
 
 // User Routes
 app.post("/api/users/register", registerUser);
