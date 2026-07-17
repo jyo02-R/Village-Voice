@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sarpanch Selection</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+
+<h1>🏛️ Sarpanch Login</h1>
+
+<select id="mandalSelect">
+
+<option value="">
+Select Mandal
+</option>
+
+<option>
+Kothavalasa
+</option>
+
+<option>
+Bobbili
+</option>
+
+<option>
+Vizianagaram
+</option>
+
+</select>
+
+<select id="villageSelect">
+
+<option>
+Select Village
+</option>
+
+</select>
+
+<button onclick="goToVillageLogin()">
+Continue
+</button>
+
+</div>
+
+<script>
+
+const villages = {
+
+"Kothavalasa":[
+"Dathi",
+"Kothavalasa",
+"Kantakapalli"
+],
+
+"Bobbili":[
+"Piridi",
+"Bobbili"
+],
+
+"Vizianagaram":[
+"Ayyannapeta",
+"Gunkalam"
+]
+
+};
+
+const mandal =
+document.getElementById(
+"mandalSelect"
+);
+
+const village =
+document.getElementById(
+"villageSelect"
+);
+
+mandal.addEventListener(
+"change",
+function(){
+
+village.innerHTML =
+"<option>Select Village</option>";
+
+villages[this.value]
+.forEach(v=>{
+
+village.innerHTML +=
+`<option>${v}</option>`;
+
+});
+
+});
+
+function goToVillageLogin(){
+
+localStorage.setItem(
+"selectedVillage",
+village.value
+);
+
+localStorage.setItem(
+"selectedMandal",
+mandal.value
+);
+
+window.location.href =
+"sarpanch-login.html";
+
+}
+
+</script>
+
+</body>
+</html>

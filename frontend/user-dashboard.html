@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+
+<h1>📢 Register Complaint</h1>
+
+<h3 id="welcomeUser"></h3>
+
+<form id="complaintForm">
+
+<select id="category" required>
+<option value="">Select Category</option>
+<option>Road Damage</option>
+<option>Water Supply</option>
+<option>Drainage</option>
+<option>Street Light</option>
+<option>Garbage Collection</option>
+<option>Other</option>
+</select>
+
+<select id="language" required>
+<option value="">Select Language</option>
+<option>English</option>
+<option>Telugu</option>
+</select>
+
+<textarea
+id="description"
+placeholder="Enter Complaint"
+required
+style="width:100%;height:120px;padding:10px;">
+</textarea>
+
+<label>📷 Upload Image</label>
+<input type="file"
+id="image"
+accept="image/*">
+
+<label>🎤 Upload Voice</label>
+
+<button type="button" id="startRecording">
+🎤 Start Recording
+</button>
+
+<button type="button" id="stopRecording">
+⏹ Stop Recording
+</button>
+
+<p id="recordingStatus">Not Recording</p>
+
+<button type="submit">
+Submit Complaint
+</button>
+
+<table border="1" width="100%">
+<tr>
+<th>ID</th>
+<th>Category</th>
+<th>Status</th>
+</tr>
+
+<tbody id="myComplaints">
+</tbody>
+
+</table>
+</form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+
+<h1>📝 User Registration</h1>
+
+<form id="registerForm">
+
+<input type="text" id="name"
+placeholder="Full Name" required>
+
+<input type="tel" id="phone"
+placeholder="Phone Number" required>
+
+<select id="mandal" required>
+    <option value="">Select Mandal</option>
+    <option value="Kothavalasa">Kothavalasa</option>
+    <option value="Bobbili">Bobbili</option>
+    <option value="Vizianagaram">Vizianagaram</option>
+</select>
+
+<select id="village" required>
+    <option value="">Select Village</option>
+</select>
+<input type="text" id="username"
+placeholder="Create Username" required>
+
+<input type="password" id="password"
+placeholder="Create Password" required>
+
+<button type="submit">
+Register
+</button>
+
+</form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

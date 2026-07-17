@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sarpanch Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 style="text-align:center;margin-top:20px;">
+Village Complaints
+</h1>
+
+<table border="1" width="100%">
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Village</th>
+<th>Category</th>
+<th>Image</th>
+<th>Voice</th>
+<th>Description</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="complaintTable">
+</tbody>
+
+</table>
+
+<script>
+
+const table=document.getElementById("complaintTable");
+
+const token=localStorage.getItem("adminToken");
+
+loadComplaints();
+
+async function loadComplaints(){
+
+const response=await fetch(
+
+"/api/admin/complaints",
+
+{
+
+headers:{
+
+Authorization:"Bearer "+token
+
+}
+
+}
+
+);
+
+const data=await response.json();
+
+table.innerHTML="";
+
+data.complaints.forEach(c=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${c.complaintId}</td>
+
+<td>${c.name}</td>
+
+<td>${c.village}</td>
+
+<td>${c.category}</td>
+
+<td>
+
+${
+
+c.image
+
+?
+
+`<img src="/uploads/${c.image}" width="120">`
+
+:
+
+"No Image"
+
+}
+
+</td>
+
+<td>
+
+${
+
+c.audio
+
+?
+
+`<audio controls><source src="/uploads/${c.audio}"></audio>`
+
+:
+
+"No Audio"
+
+}
+
+</td>
+
+<td>${c.description}</td>
+
+<td>${c.status}</td>
+
+<td>
+
+<select onchange="updateStatus('${c._id}',this.value)">
+
+<option value="Pending" ${c.status=="Pending"?"selected":""}>Pending</option>
+
+<option value="Completed" ${c.status=="Completed"?"selected":""}>Completed</option>
+
+</select>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+async function updateStatus(id,status){
+
+await fetch(
+
+"/api/admin/complaints/"+id,
+
+{
+
+method:"PUT",
+
+headers:{
+
+"Content-Type":"application/json",
+
+Authorization:"Bearer "+token
+
+},
+
+body:JSON.stringify({
+
+status
+
+})
+
+}
+
+);
+
+alert("Status Updated");
+
+loadComplaints();
+
+}
+
+</script>
+
+</body>
+</html>
