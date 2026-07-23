@@ -15,10 +15,15 @@
 <form id="registerForm">
 
 <input type="text" id="name"
-placeholder="Full Name" required>
+placeholder="Full Name" required 
+pattern="[a-zA-Z\s]+" title="Name should contain only letters and spaces">
 
 <input type="tel" id="phone"
-placeholder="Phone Number" required>
+placeholder="Phone Number" required 
+pattern="[0-9]{10}" title="Phone number must be exactly 10 digits">
+
+<input type="email" id="email"
+placeholder="Email Address" required>
 
 <select id="mandal" required>
     <option value="">Select Mandal</option>
@@ -31,10 +36,12 @@ placeholder="Phone Number" required>
     <option value="">Select Village</option>
 </select>
 <input type="text" id="username"
-placeholder="Create Username" required>
+placeholder="Create Username" required 
+minlength="4" pattern="^[a-zA-Z0-9_]+$" title="Username must be at least 4 characters and contain only letters, numbers, or underscores (no spaces)">
 
 <input type="password" id="password"
-placeholder="Create Password" required>
+placeholder="Create Password" required 
+minlength="6" title="Password must be at least 6 characters long">
 
 <button type="submit">
 Register

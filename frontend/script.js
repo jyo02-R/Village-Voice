@@ -73,20 +73,53 @@ registerForm.addEventListener("submit", async function(e){
 
 e.preventDefault();
 
+const name = document.getElementById("name").value;
+const phone = document.getElementById("phone").value;
+const email = document.getElementById("email").value;
+const mandal = document.getElementById("mandal").value;
+const village = document.getElementById("village").value;
+const username = document.getElementById("username").value;
+const password = document.getElementById("password").value;
+
+// Client-side validations
+const nameRegex = /^[a-zA-Z\s]+$/;
+if (!nameRegex.test(name.trim())) {
+    alert("Name must contain only letters and spaces");
+    return;
+}
+
+const phoneRegex = /^\d{10}$/;
+if (!phoneRegex.test(phone.trim())) {
+    alert("Phone number must be exactly 10 digits");
+    return;
+}
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(email.trim())) {
+    alert("Please enter a valid email address");
+    return;
+}
+
+const usernameRegex = /^[a-zA-Z0-9_]+$/;
+const normalizedUsername = username.trim().toLowerCase();
+if (!usernameRegex.test(normalizedUsername) || normalizedUsername.length < 4) {
+    alert("Username must be at least 4 characters and contain only letters, numbers, or underscores (no spaces)");
+    return;
+}
+
+if (password.length < 6) {
+    alert("Password must be at least 6 characters long");
+    return;
+}
+
 const user={
-
-name:document.getElementById("name").value,
-
-phone:document.getElementById("phone").value,
-
-mandal:document.getElementById("mandal").value,
-
-village:document.getElementById("village").value,
-
-username:document.getElementById("username").value,
-
-password:document.getElementById("password").value
-
+    name: name.trim(),
+    phone: phone.trim(),
+    email: email.trim().toLowerCase(),
+    mandal,
+    village,
+    username: normalizedUsername,
+    password
 };
 
 try{

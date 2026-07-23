@@ -10,6 +10,11 @@
 Village Complaints
 </h1>
 
+<div class="header-actions" style="display:flex; justify-content:space-between; align-items:center; margin: 20px 50px;">
+  <button onclick="logout()" class="btn-logout" style="background:#dc3545; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; font-weight:bold;">🚪 Logout</button>
+  <button onclick="toggleChangePassword()" class="btn-password" style="background:#007bff; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; font-weight:bold;">🔑 Change Password</button>
+</div>
+
 <table border="1" width="100%">
 <thead>
 <tr>
@@ -29,6 +34,16 @@ Village Complaints
 </tbody>
 
 </table>
+
+<div id="passwordSection" style="display:none; max-width:400px; margin:20px auto; padding:20px; border:1px solid #ddd; border-radius:5px; background:#f9f9f9; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <h3 style="margin-top:0;">🔑 Change Password</h3>
+  <form id="changePasswordForm">
+    <input type="password" id="currentPassword" placeholder="Current Password" required style="width:90%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:4px;">
+    <input type="password" id="newPassword" placeholder="New Password (min 6 chars)" required style="width:90%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:4px;">
+    <input type="password" id="confirmPassword" placeholder="Confirm New Password" required style="width:90%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:4px;">
+    <button type="submit" style="background:#28a745; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; width:100%; font-weight:bold;">Update Password</button>
+  </form>
+</div>
 
 <script>
 
@@ -166,6 +181,57 @@ alert("Status Updated");
 
 loadComplaints();
 
+}
+
+function toggleChangePassword() {
+  const section = document.getElementById("passwordSection");
+  section.style.display = section.style.display === "none" ? "block" : "none";
+}
+
+document.getElementById("changePasswordForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const currentPassword = document.getElementById("currentPassword").value;
+  const newPassword = document.getElementById("newPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (newPassword !== confirmPassword) {
+      alert("New passwords do not match!");
+      return;
+  }
+
+  if (newPassword.length < 6) {
+      alert("New password must be at least 6 characters long!");
+      return;
+  }
+
+  try {
+      const response = await fetch("/api/admin/change-password", {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify({ currentPassword, newPassword })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+          alert("Password updated successfully!");
+          document.getElementById("changePasswordForm").reset();
+          toggleChangePassword();
+      } else {
+          alert(data.message || "Failed to update password");
+      }
+  } catch (err) {
+      alert("Error connecting to server");
+      console.error(err);
+  }
+});
+
+function logout() {
+  localStorage.removeItem("adminToken");
+  localStorage.removeItem("sarpanch");
+  window.location.href = "index.html";
 }
 
 </script>
