@@ -134,32 +134,25 @@ exports.registerSarpanch = async (req, res) => {
                 village: "Dathi"
             },
             {
-                name: "Devarapalli Sarpanch",
-                username: "devarapalli",
-                password: await bcrypt.hash("devarapalli123", 10),
+                name: "Kothavalasa Sarpanch",
+                username: "kothavalasa",
+                password: await bcrypt.hash("kothavalasa123", 10),
                 mandal: "Kothavalasa",
-                village: "Devarapalli"
+                village: "Kothavalasa"
             },
             {
-                name: "Cheedivalasa Sarpanch",
-                username: "cheedivalasa",
-                password: await bcrypt.hash("cheedivalasa123", 10),
+                name: "Kantakapalli Sarpanch",
+                username: "kantakapalli",
+                password: await bcrypt.hash("kantakapalli123", 10),
                 mandal: "Kothavalasa",
-                village: "Cheedivalasa"
+                village: "Kantakapalli"
             },
             {
-                name: "Pedabhimavaram Sarpanch",
-                username: "pedabhimavaram",
-                password: await bcrypt.hash("pedabhimavaram123", 10),
+                name: "Nelivada Sarpanch",
+                username: "nelivada",
+                password: await bcrypt.hash("nelivada123", 10),
                 mandal: "Kothavalasa",
-                village: "Pedabhimavaram"
-            },
-            {
-                name: "Korukonda Sarpanch",
-                username: "korukonda",
-                password: await bcrypt.hash("korukonda123", 10),
-                mandal: "Kothavalasa",
-                village: "Korukonda"
+                village: "Nelivada"
             },
             {
                 name: "Piridi Sarpanch",
@@ -174,6 +167,34 @@ exports.registerSarpanch = async (req, res) => {
                 password: await bcrypt.hash("bobbili123", 10),
                 mandal: "Bobbili",
                 village: "Bobbili"
+            },
+            {
+                name: "Rangarayapuram Sarpanch",
+                username: "rangarayapuram",
+                password: await bcrypt.hash("rangarayapuram123", 10),
+                mandal: "Bobbili",
+                village: "Rangarayapuram"
+            },
+            {
+                name: "Ayyannapeta Sarpanch",
+                username: "ayyannapeta",
+                password: await bcrypt.hash("ayyannapeta123", 10),
+                mandal: "Vizianagaram",
+                village: "Ayyannapeta"
+            },
+            {
+                name: "Gunkalam Sarpanch",
+                username: "gunkalam",
+                password: await bcrypt.hash("gunkalam123", 10),
+                mandal: "Vizianagaram",
+                village: "Gunkalam"
+            },
+            {
+                name: "Koratam Sarpanch",
+                username: "koratam",
+                password: await bcrypt.hash("koratam123", 10),
+                mandal: "Vizianagaram",
+                village: "Koratam"
             }
         ];
 

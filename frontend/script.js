@@ -142,7 +142,7 @@ const data=await response.json();
 
 if(response.ok){
 
-alert("Registration Successful");
+alert("Registration Successful! A welcome confirmation email has been sent to your registered address.");
 
 window.location.href="user-login.html";
 
